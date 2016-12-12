@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title> Registro</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://cdn.wideskyhosting.com/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="/js/validate.js"></script>
+    <style>
+      .error {color: red}
+    </style>
+  </head>
+
+  <body>
+    <p> <a href="/register/en">English</a> <a href="/register/es">Español</a> <a href="/register/eus">Euskara</a> </p>
+    <h1>Registro</h1>
+    <h2>Rellene los campos por favor:</h2>
+
+    <form method="post" action="" id="formulario">
+      <table>
+        <tbody>
+          <tr>
+            <td class="label">
+              Nombre de usuario
+            </td>
+            <td>
+              <input type="text" id="username" name="username" value="" placeholder="Tu nombre es ..." required/>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Password
+            </td>
+            <td>
+              <input type="password" id="password" name="password" id="password" value="" autocomplete="off" required/>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Repetir Password
+            </td>
+            <td>
+              <input type="password" id="password2" name="password2" value="" placeholder="Repitelo exactamente igual ..." required/>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Email
+            </td>
+            <td>
+              <input type="email" id="email" name="email" value="" placeholder="...@..." required/>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <input type="submit" value="Enviar"/>
+    </form>
+    <p> <a href="/es"> Volver </a></p>

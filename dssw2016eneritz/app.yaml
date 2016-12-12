@@ -5,18 +5,32 @@ api_version: 1
 threadsafe: yes
 
 handlers:
-  # asigna URLs a los scripts que atenderas las solicitudes HTTP
-  # archivos estáticos html, css, js, imágenes...
+  # asigna URLs a los scripts que atenderá las solicitudes HTTP
+
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
 
-- url: /assets
-  static_dir: static
+# /pages (html) --> ¡CUIDADO! por lo que he visto, si pones las páginas html estáticas app engine no las encuentra al hacer deploy
+# archivos estáticos  /stylesheets (css), /scripts (js), /images (gif, jpg, png...)
+- url: /img
+  static_dir: static/images
 
-#- url: /.*
-#  script: register.app
+- url: /css
+  static_dir: static/stylesheets
 
+- url: /js
+  static_dir: static/javascripts
+
+# Registro --> con /register
+- url: /register/.*
+  script: register.app
+
+# foro de mensajes --> con /chat
+- url: /chat
+  script: chat.app
+
+# main: index y todo lo demás .*
 - url: .*
   script: main.app
 
