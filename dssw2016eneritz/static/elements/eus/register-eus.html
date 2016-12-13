@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title> Erregistratu </title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://cdn.wideskyhosting.com/js/jquery.validate.js"></script>
+    <!--<script type="text/javascript" src="/js/validate.js"></script>-->
+  </head>
+
+  <body>
+    <p> <a href="/register/?lang=en">English</a> <a href="/register/?lang=es">Español</a> <a href="/register/?lang=eus">Euskara</a> </p>
+    <h1>Erregistratu</h1>
+    <h2>Atal guztiak bete mesedez:</h2>
+
+    <form method="post" action="/register/?lang=eus" id="form">
+      <table align="center">
+        <tbody>
+          <tr>
+            <td class="label">
+              Bezero izena
+            </td>
+            <td>
+              <input type="text" id="username" name="username" value="" placeholder="Zure izena ... da"/>
+            </td>
+            <td>
+              <p class="error" > {{usernameError}} </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Pasahitza
+            </td>
+            <td>
+              <input type="password" id="password" name="password" id="password" value="" placeholder="6 karaktere alfanumeriko" autocomplete="off"/>
+            </td>
+            <td>
+              <p class="error" > {{passwordError}} </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Errepikatu pasahitza
+            </td>
+            <td>
+              <input type="password" id="password2" name="password2" value="" placeholder="Errepika ezazu berdin ..."/>
+            </td>
+            <td>
+              <p class="error" > {{password2Error}} </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Email
+            </td>
+            <td>
+              <input type="text" id="email" name="email" value="" placeholder="ni@example.com"/>
+            </td>
+            <td>
+              <p class="error" > {{emailError}} </p>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <p><input type="submit" value="Bidali"/></p>
+    </form>
+
+    <p> <a href="/?lang=eus"> Atzera bueltatu</a></p>

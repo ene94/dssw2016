@@ -6,22 +6,22 @@ from google.appengine.ext.webapp \
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-		self.response.out.write(
-            template.render('static/elements/main-es.html', {}))
-
-class EnglishHandler(webapp2.RequestHandler):
-    def get(self):
-		self.response.out.write(
-            template.render('static/elements/main-en.html', {}))
-
-class EuskaraHandler(webapp2.RequestHandler):
-    def get(self):
-		self.response.out.write(
-            template.render('static/elements/main-eus.html', {}))
+        #check language from get params
+        LANGUAGE = "es"
+        lan = self.request.get('lang')
+        if lan != '':
+            LANGUAGE = lan
+        #display selected language main page
+        if LANGUAGE == "en":
+            self.response.out.write(
+                template.render('static/elements/en/main-en.html', {}))
+        elif LANGUAGE == "eus":
+            self.response.out.write(
+                template.render('static/elements/eus/main-eus.html', {}))
+        else:
+            self.response.out.write(
+                template.render('static/elements/es/main-es.html', {}))
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
-    ('/es', MainHandler),
-    ('/en', EnglishHandler),
-    ('/eus', EuskaraHandler),
+    ('.*', MainHandler)
 ], debug=True)

@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title> Register </title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://cdn.wideskyhosting.com/js/jquery.validate.js"></script>
+    <!--<script type="text/javascript" src="/js/validate.js"></script>-->
+  </head>
+
+  <body>
+    <p> <a href="/register/?lang=en">English</a> <a href="/register/?lang=es">Español</a> <a href="/register/?lang=eus">Euskara</a> </p>
+    <h1>Register</h1>
+    <h2>Type all the sections:</h2>
+
+    <form method="post" action="/register/?lang=en" id="form">
+      <table align="center">
+        <tbody>
+          <tr>
+            <td class="label">
+              User name
+            </td>
+            <td>
+              <input type="text" id="username" name="username" value="" placeholder="Your name is ..."/>
+            </td>
+            <td>
+              <p class="error" > {{usernameError}} </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Password
+            </td>
+            <td>
+              <input type="password" id="password" name="password" id="password" value="" placeholder="6 chars alphanumeric" autocomplete="off"/>
+            </td>
+            <td>
+              <p class="error" > {{passwordError}} </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Repeat the Password
+            </td>
+            <td>
+              <input type="password" id="password2" name="password2" value="" placeholder="Repeat the same ..."/>
+            </td>
+            <td>
+              <p class="error" > {{password2Error}} </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="label">
+              Email
+            </td>
+            <td>
+              <input type="text" id="email" name="email" value="" placeholder="me@example.com"/>
+            </td>
+            <td>
+              <p class="error" > {{emailError}} </p>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      <p><input type="submit" value="Send"/></p>
+    </form>
+    <p> <a href="/?lan=en"> Go back </a></p>

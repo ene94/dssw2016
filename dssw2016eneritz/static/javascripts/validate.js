@@ -1,9 +1,10 @@
 jQuery(function ($) {
-  $("#formulario").validate({
+  $("#form").validate({
     rules: {
       username: "required",
       password: "required",
       password2: {
+        required: true,
         equalTo: '#password'
       },
       email: {
