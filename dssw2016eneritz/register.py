@@ -2,6 +2,7 @@
 
 import webapp2
 import re
+from google.appengine.ext import ndb
 
 from google.appengine.ext.webapp \
     import template
@@ -51,6 +52,16 @@ class Register(webapp2.RequestHandler):
             error = True
             emailError = "No es un email valido"
 
+        # check if user exists: username & email
+        userexist = User.query(User.username==username).count()
+        if (userexist==1):
+            error = True
+            usernameError += "Ya existe un usuario con ese nombre"
+        emailexist = User.query(User.email==email).count()
+        if (emailexist==1):
+            error = True
+            emailError += "Ya existe un usuario con ese email"
+
         #show apropiate response --> ERROR in en/eus/es
         if error == True:
             values = fill_values(username, password, password2, email, usernameError, passwordError, password2Error, emailError)
@@ -67,6 +78,13 @@ class Register(webapp2.RequestHandler):
                     template.render('static/elements/es/register-es.html', values))
                 self.response.write('<h1>ERROR</h1>')
         else:
+            # save user in ddbb
+            user = User(
+                username = username,
+                password = password,
+                password2 = password2,
+                email = email)
+            user.put()
             if LANGUAGE == "en":
                 self.response.out.write(
                     template.render('static/elements/en/register-en.html', {}))
@@ -115,6 +133,37 @@ def fill_values(username, password, password2, email, usernameError, passwordErr
     }
     return values
 
+#MODELO para la BBDD
+class User(ndb.Model):
+    username = ndb.StringProperty(required=True)
+    password = ndb.StringProperty(required=True)
+    password2 = ndb.StringProperty(required=True)
+    email = ndb.StringProperty(required=True)
+    photo = ndb.BlobProperty()
+    created = ndb.DateTimeProperty(auto_now_add=True)
+
+class ShowUsers(webapp2.RequestHandler):
+    def get(self):
+        users = ndb.gql(
+            'SELECT * FROM User '
+            'ORDER BY username ASC')
+        values = {
+            'users': users
+        }
+        #check language from get params
+        LANGUAGE = self.request.get('lang')
+        #display selected language registration page
+        if LANGUAGE == "en":
+            self.response.out.write(
+                template.render('static/elements/en/users-en.html', values))
+        elif LANGUAGE == "eus":
+            self.response.out.write(
+                template.render('static/elements/eus/users-eus.html', values))
+        else:
+            self.response.out.write(
+                template.render('static/elements/es/users-es.html', values))
+
 app = webapp2.WSGIApplication([
-    ('/register.*', Register),
+    ('/register/', Register),
+    ('/register/users/', ShowUsers)
 ], debug=True)

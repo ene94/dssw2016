@@ -13,7 +13,7 @@
     <h1>Registro</h1>
     <h2>Rellene los campos por favor:</h2>
 
-    <form method="post" action="/register/?lang=es" id="form">
+    <form method="post" action="/register/?lang=es" id="form" enctype=”multipart/form-data”>
       <table align="center">
         <tbody>
           <tr>
@@ -64,8 +64,24 @@
             </td>
           </tr>
 
+          <tr>
+            <td class="label">
+              Photo
+            </td>
+            <td>
+              <input type="file" id="photo" name="photo" accept="image/*">
+            </td>
+            <td>
+              <p class="error"> {{photoError}} </p>
+            </td>
+          </tr>
+
         </tbody>
       </table>
       <p><input type="submit" value="Enviar"/></p>
     </form>
     <p> <a href="/?lang=es"> Volver </a></p>
+    <br>
+    <br>
+    <br>
+    <p> <a href="/register/users/?lang=es"> Ver todos los usuarios </a> </p>

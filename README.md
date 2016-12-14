@@ -24,3 +24,8 @@ Proyecto accesible a travÃ©s de GAE: http://dssw2016eneritz.appspot.com/
 * Agregar validación en el lado del servidor con RE
 * Optimizar el código para versión multilingüe
 * Paso de parámetros para inicializar campos del HTML
+* Agregar usuarios a la base de datos
+* Verificar si el usuario ya existe antes de agregarlo
+* Ampliar a versión multilingue de las nuevas páginas
+* --> FALTA: Agregar una foto en el registro
+* --> FALTA: Mostrar la foto en la tabla de usuarios

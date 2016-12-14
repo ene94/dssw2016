@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Erabiltzaileak</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <p> <a href="/register/users/?lang=en">English</a>
+      <a href="/register/users/?lang=es">Español</a>
+      <a href="/register/users/?lang=eus">Euskara</a> </p>
+    <h1>Erabiltzaileen datu basea</h1>
+
+    <table align="center" border="1">
+      <tbody>
+        <tr>
+          <th>
+            <p>Erabiltzailea</p>
+          </th>
+          <th>
+            <p>Pasahitza</p>
+          </th>
+          <th>
+            <p>Pasahitza2</p>
+          </th>
+          <th>
+            <p>Helbide elektronikoa</p>
+          </th>
+        </tr>
+        {% for user in users %}
+          <tr>
+            <td>
+              {{user.username}}
+            </td>
+            <td>
+              {{user.password}}
+            </td>
+            <td>
+              {{user.password2}}
+            </td>
+            <td>
+              {{user.email}}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p> <a href="/register/?lang=eus"> Itzuli </a></p>
+  </body>
+</html>
