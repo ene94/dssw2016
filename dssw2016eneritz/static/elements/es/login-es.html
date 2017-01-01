@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="606652852649-a4m0dlihj050t108ltlequa0cglsth09.apps.googleusercontent.com">
+    <script src="/js/signIn.js"></script>
+  </head>
+  <body>
+    <h1> Inicio de sesión:</h1>
+    <div  align="center"
+          class="g-signin2"
+          data-onsuccess="onSignIn"
+          data-onfailure="onSignInFailure">
+    </div>
+    <table>
+      <tr>
+        <td>
+          ID:
+        </td>
+        <td>
+          <p id="googleID"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Nombre:
+        </td>
+        <td>
+          <p id="googleName"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Email:
+        </td>
+        <td>
+          <p id="googleEmail"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Image:
+        </td>
+        <td>
+          <img id="googleImage"/>
+        </td>
+      </tr>
+    </table>
+    <br><br><br>
+    <a href="" onclick="signOut()">Sign out</a>
+
+    <br><br><br>
+    <a href="/?lang=es"> Volver </a>
+
+  </body>
+</html>

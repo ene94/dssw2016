@@ -101,6 +101,24 @@ class Register(webapp2.RequestHandler):
                 self.response.write('<h1>El formulario ha sido recibido correctamente</h1>')
                 self.response.write('<p>Bienvenid@: %s</p>' % username)
 
+class AsyncValidation (webapp2.RequestHandler):
+    def get(self):
+        error = False
+        emailError = ""
+        email = self.request.get('email2')
+        if not valid_email(email):
+            error = True
+            emailError = "Email NO valido... prueba otra vez"
+        emailexist = User.query(User.email==email).count()
+        if emailexist==1:
+            error = True
+            emailError += "Ya existe un usuario con ese email"
+        if error == False:
+            emailError = ""
+        self.response.write(emailError)
+
+
+
 #form parameter's restriction
 USER_RE = re.compile('[a-zA-Z]{3,20}')
 PASSWORD_RE = re.compile('[a-zA-Z0-9]{6,6}')
@@ -165,5 +183,6 @@ class ShowUsers(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/register/', Register),
-    ('/register/users/', ShowUsers)
+    ('/register/users/', ShowUsers),
+    ('/register/asyncValidation/', AsyncValidation)
 ], debug=True)

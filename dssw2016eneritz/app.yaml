@@ -26,6 +26,10 @@ handlers:
 - url: /register/.*
   script: register.app
 
+# Web Services --> con /webservices
+- url: /webservices/.*
+  script: webservices.app
+
 # foro de mensajes --> con /chat
 - url: /chat
   script: chat.app

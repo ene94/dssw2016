@@ -5,6 +5,7 @@
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://cdn.wideskyhosting.com/js/jquery.validate.js"></script>
     <!--<script type="text/javascript" src="/js/validate.js"></script>-->
+    <script src="/js/asyncvalidation.js"></script>
   </head>
 
   <body>
@@ -56,10 +57,13 @@
               Email
             </td>
             <td>
-              <input type="text" id="email" name="email" value="" placeholder="ni@example.com"/>
+              <input type="text" id="email" onfocusin="checkingEmailMessage()" onfocusout="asyncValidation()" name="email" value="" placeholder="ni@example.com"/>
             </td>
             <td>
-              <p class="error" > {{emailError}} </p>
+              <p class="error" id="emailError"> {{emailError}} </p>
+            </td>
+            <td>
+              <p class="correct" id="emailCorrect">{{emailCorrect}}</p>
             </td>
           </tr>
 

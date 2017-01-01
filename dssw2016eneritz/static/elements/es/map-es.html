@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Mapas</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+    <script src="/js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsxA8vJkdC7u7wr07XsSYGWhnF3RLXdhk&callback=initMap" async defer></script>
+  </head>
+  <body>
+    <h1> Mapa </h1>
+    <p> <a href="/?lang=es"> Volver </a></p>
+    
+    <form method="post" action="" align="center">
+      <p> Introduce la dirección </p>
+      <input type="text" id="address" name="address" value="{{address}}" placeholder="Address"/>
+      <button type="submit">Send</button>
+      <p> {{location}} </p>
+      <table align="center">
+        <tr>
+          <td>
+            latitud
+          </td>
+          <td>
+            <p id="lat">{{lat}}</p>
+          </td>
+      </tr>
+      <tr>
+        <td>
+          longitud
+        </td>
+        <td>
+          <p id="lng">{{lng}}</p>
+        </td>
+      </tr>
+    </table>
+
+      <div id="map">
+      </div>
+    </form>
+  </body>
+</html>

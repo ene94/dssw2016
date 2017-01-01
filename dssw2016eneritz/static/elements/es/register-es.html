@@ -6,6 +6,7 @@
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://cdn.wideskyhosting.com/js/jquery.validate.js"></script>
     <!--<script type="text/javascript" src="/js/validate.js"></script>-->
+    <script src="/js/asyncvalidation.js"></script>
   </head>
 
   <body>
@@ -17,7 +18,7 @@
       <table align="center">
         <tbody>
           <tr>
-            <td class="label">
+            <td >
               Nombre de usuario
             </td>
             <td>
@@ -29,7 +30,7 @@
           </tr>
 
           <tr>
-            <td class="label">
+            <td >
               Password
             </td>
             <td>
@@ -41,7 +42,7 @@
           </tr>
 
           <tr>
-            <td class="label">
+            <td >
               Repetir Password
             </td>
             <td>
@@ -53,19 +54,22 @@
           </tr>
 
           <tr>
-            <td class="label">
+            <td >
               Email
             </td>
             <td>
-              <input type="text" id="email" name="email" value="{{email}}" placeholder="algo@ejemplo.com"/>
+              <input type="text" id="email" onfocusin="checkingEmailMessage()" onfocusout="asyncValidation()" name="email" value="{{email}}" placeholder="algo@ejemplo.com"/>
             </td>
             <td>
-              <p class="error"> {{emailError}} </p>
+              <p class="error" id="emailError"> {{emailError}} </p>
+            </td>
+            <td>
+              <p class="correct" id="emailCorrect">{{emailCorrect}}</p>
             </td>
           </tr>
 
           <tr>
-            <td class="label">
+            <td >
               Photo
             </td>
             <td>
@@ -81,7 +85,4 @@
       <p><input type="submit" value="Enviar"/></p>
     </form>
     <p> <a href="/?lang=es"> Volver </a></p>
-    <br>
-    <br>
-    <br>
     <p> <a href="/register/users/?lang=es"> Ver todos los usuarios </a> </p>
