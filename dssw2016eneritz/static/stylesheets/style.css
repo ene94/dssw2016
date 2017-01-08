@@ -1,30 +1,65 @@
+html {
+    margin: auto;
+    color: #002244;
+    font-family: OCR A Std, monospace; /*Caflisch Script Pro, cursive;*/
+    font-size: 40pt;
+}
+
 body {
-	background-color: #FFCC66;
-	text-align:center;
+    margin: auto;
+    vertical-align: middle;
+    background-color: #8888FF;
+    /*background-image: url(/img/ones-and-zeros.png);*/
 }
-h1 {
-	text-align: center;
-	color: #990000;
-	background-color: #FC9804;
+
+.backgroundImages {
+  width: 1250;
 }
-h2 {
-	color: #990000;
-	text-align: center;
+
+table {
+  margin: auto;
+  border-spacing: 5px;
+  border-collapse: separate;
+  background-color: white;
 }
 
 th {
-	text-align: center
-	color: #990000;
-	background-color: #FC9804;
+  margin: auto;
+  padding: 10px;
+  background-color: #002244;
+  color: white;
 }
-
-table, th, td {
-	margin-left: auto;
-  margin-right: auto;;
-}
+th:hover {background-color: #003366;}/* mouse over link */
 
 a {
-	text-align: center;
+    color: #002244;
+  }
+
+.headLinks {
+  color: white;
+  text-decoration: none
+}
+
+h1 {
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+  color: white;
+  background: #003366;
+}
+
+.body {
+  margin: auto;
+  text-align: left;
+  padding: 20px;
+}
+
+.myTables {
+  padding: 10px;
+  background: #8888FF;
+  color: #002244;
+  border-spacing: 20px;
+  border-collapse: separate;
 }
 
 .error {
@@ -35,4 +70,10 @@ a {
 .correct {
 	color: green;
 	text-align: left;
+}
+
+#map {
+  height: 60%;
+  width: 1262;
+  margin: auto;
 }

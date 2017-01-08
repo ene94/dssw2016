@@ -1,48 +1,86 @@
-<html>
-  <head>
-    <title>Usuarios</title>
-    <link type="text/css" rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
-    <p> <a href="/register/users/?lang=en">English</a>
-      <a href="/register/users/?lang=es">Español</a>
-      <a href="/register/users/?lang=eus">Euskara</a> </p>
-    <h1>Base de datos de usuarios</h1>
+<html lang="es">
+<head>
+  <title> Usuarios </title>
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+</head>
 
-    <table border="1">
-      <tbody>
-        <tr>
-          <th>
-            <p>Usuario</p>
-          </th>
-          <th>
-            <p>Contraseña</p>
-          </th>
-          <th>
-            <p>Contraseña2</p>
-          </th>
-          <th>
-            <p>Correo</p>
-          </th>
-        </tr>
-        {% for user in users %}
-          <tr>
-            <td>
-              {{user.username}}
-            </td>
-            <td>
-              {{user.password}}
-            </td>
-            <td>
-              {{user.password2}}
-            </td>
-            <td>
-              {{user.email}}
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <p> <a href="/register/?lang=es"> Volver </a></p>
-  </body>
+<body>
+  <table>
+    <tr>
+      <td colspan="6"><img src="/img/head.jpg" class="backgroundImages" alt="head"></td>
+    </tr>
+
+    <tr>
+      <th><a class="headLinks" href="/main/?lang=es">Inicio</a></th>
+      <th><a class="headLinks" href="/register/?lang=es">Registro</a></th>
+      <th><a class="headLinks" href="/webservices/login/?lang=es">Iniciar Sesión</a></th>
+      <th><a class="headLinks" href="/webservices/map/?lang=es">Mapa</a></th>
+      <th><a class="headLinks" href="/chat/?lang=es"> Chat </a></th>
+      <form method="get">
+        <th>
+          Idioma <select name="lang" onchange="this.form.submit();">
+            <option selected value="es">Español</option>
+            <option value="en">English</option>
+            <option value="eus">Euskara</option>
+          </select>
+        </th>
+      </form>
+    </tr>
+
+    <tr>
+      <td colspan="6">
+        <h1>TODOS LOS USUARIOS</h1>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="6">
+        <div class="body">
+          <!-- HERE START'S THE CONTENT -->
+
+          <table class="myTables">
+            <tbody>
+              {% for user in users %}
+              <tr>
+                <td colspan="1" rowspan="4">
+                  <img src="/img/girl_computer_anime.png" alt="user photo" width="150">{{user.photo}}<!--TODO: HACER LOS BLOBS-->
+                </td>
+
+                <td>
+                  Nombre de usuario: {{user.username}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Contraseña: {{user.password}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Contraseña 2: {{user.password2}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Email: {{user.email}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <br>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br><br><br>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
+    </tr>
+  </table>
+</body>
 </html>

@@ -1,57 +1,93 @@
-<html>
-  <head>
-    <title>Login</title>
-    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="606652852649-a4m0dlihj050t108ltlequa0cglsth09.apps.googleusercontent.com">
-    <script src="/js/signIn.js"></script>
-  </head>
-  <body>
-    <h1> Inicio de sesión:</h1>
-    <div  align="center"
+<html lang="es">
+<head>
+  <title>Inicio de Sesión</title>
+  <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="606652852649-a4m0dlihj050t108ltlequa0cglsth09.apps.googleusercontent.com">
+  <script src="/js/signIn.js"></script>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <td colspan="6"><img src="/img/head.jpg" class="backgroundImages" alt="head"></td>
+    </tr>
+
+    <tr>
+      <th><a class="headLinks" href="/main/?lang=es">Inicio</a></th>
+      <th><a class="headLinks" href="/register/?lang=es">Registro</a></th>
+      <th>Iniciar Sesión</th>
+      <th><a class="headLinks" href="/webservices/map/?lang=es">Mapa</a></th>
+      <th><a class="headLinks" href="/chat/?lang=es"> Chat </a></th>
+      <form method="get">
+        <th>
+          Idioma <select name="lang" onchange="this.form.submit();">
+            <option selected value="es">Español</option>
+            <option value="en">English</option>
+            <option value="eus">Euskara</option>
+          </select>
+        </th>
+      </form>
+    </tr>
+
+    <tr>
+      <td colspan="6">
+        <h1>INICIO DE SESIÓN</h1>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="6">
+        <div class="body" height="200">
+          <!-- HERE START'S THE CONTENT -->
+          <div
           class="g-signin2"
           data-onsuccess="onSignIn"
           data-onfailure="onSignInFailure">
-    </div>
-    <table>
-      <tr>
-        <td>
-          ID:
-        </td>
-        <td>
-          <p id="googleID"></p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Nombre:
-        </td>
-        <td>
-          <p id="googleName"></p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Email:
-        </td>
-        <td>
-          <p id="googleEmail"></p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Image:
-        </td>
-        <td>
-          <img id="googleImage"/>
-        </td>
-      </tr>
-    </table>
-    <br><br><br>
-    <a href="" onclick="signOut()">Sign out</a>
+        </div>
+        <br><br><br>
 
-    <br><br><br>
-    <a href="/?lang=es"> Volver </a>
+        <table class="myTables">
+              <tr>
+                <td colspan="1" rowspan="3">
+                  <img id="googleImage" alt="user image" width="150">
+                </td>
+                <td>
+                  <p>Nombre:
+                </td>
+                <td>
+                  <p id="googleName">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>ID:
+                </td>
+                <td>
+                  <p id="googleID"></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>Email: </p>
+                </td>
+                <td>
+                  <p id="googleEmail">
+                </td>
+              </tr>
+            </table>
 
-  </body>
+        <br><br><br>
+        <a href="" onclick="signOut()">Sign out</a>
+
+        <br><br><br>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
+  </tr>
+</table>
+</body>
 </html>

@@ -1,79 +1,130 @@
-<html>
-  <head>
-    <title> Erregistratu </title>
-    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="http://cdn.wideskyhosting.com/js/jquery.validate.js"></script>
-    <!--<script type="text/javascript" src="/js/validate.js"></script>-->
-    <script src="/js/asyncvalidation.js"></script>
-  </head>
+<html lang="eus">
+<head>
+  <title> Erregistratu </title>
+  <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="http://cdn.wideskyhosting.com/js/jquery.validate.js"></script>
+  <!--<script type="text/javascript" src="/js/validate.js"></script>-->
+  <script src="/js/asyncvalidation.js"></script>
+</head>
 
-  <body>
-    <p> <a href="/register/?lang=en">English</a> <a href="/register/?lang=es">Español</a> <a href="/register/?lang=eus">Euskara</a> </p>
-    <h1>Erregistratu</h1>
-    <h2>Atal guztiak bete mesedez:</h2>
+<body>
+  <table>
+    <tr>
+      <td colspan="6"><img src="/img/head.jpg" class="backgroundImages" alt="head"></td>
+    </tr>
 
-    <form method="post" action="/register/?lang=eus" id="form">
-      <table align="center">
-        <tbody>
-          <tr>
-            <td class="label">
-              Bezero izena
-            </td>
-            <td>
-              <input type="text" id="username" name="username" value="" placeholder="Zure izena ... da"/>
-            </td>
-            <td>
-              <p class="error" > {{usernameError}} </p>
-            </td>
-          </tr>
+    <tr>
+      <th><a class="headLinks" href="/main/?lang=eus">Hasiera</a></th>
+      <th>Izena eman</th>
+      <th><a class="headLinks" href="/webservices/login/?lang=eus">Saioa hasi</a></th>
+      <th><a class="headLinks" href="/webservices/map/?lang=eus">Mapa</a></th>
+      <th><a class="headLinks" href="/chat/?lang=eus"> Chata </a></th>
+      <form method="get">
+        <th>
+          Hizkuntza <select name="lang" onchange="this.form.submit();">
+                      <option value="es">Español</option>
+                      <option value="en">English</option>
+                      <option selected value="eus">Euskara</option>
+                    </select>
+        </th>
+      </form>
+    </tr>
 
-          <tr>
-            <td class="label">
-              Pasahitza
-            </td>
-            <td>
-              <input type="password" id="password" name="password" id="password" value="" placeholder="6 karaktere alfanumeriko" autocomplete="off"/>
-            </td>
-            <td>
-              <p class="error" > {{passwordError}} </p>
-            </td>
-          </tr>
+    <tr>
+      <td colspan="6">
+        <h1>ERREGISTRATU</h1>
+      </td>
+    </tr>
 
-          <tr>
-            <td class="label">
-              Errepikatu pasahitza
-            </td>
-            <td>
-              <input type="password" id="password2" name="password2" value="" placeholder="Errepika ezazu berdin ..."/>
-            </td>
-            <td>
-              <p class="error" > {{password2Error}} </p>
-            </td>
-          </tr>
+    <tr>
+      <td colspan="6">
+        <div class="body">
+          <!-- HERE STARTS THE CONTENT -->
+          <h2>Atal guztiak bete mesedez:</h2>
 
-          <tr>
-            <td class="label">
-              Email
-            </td>
-            <td>
-              <input type="text" id="email" onfocusin="checkingEmailMessage()" onfocusout="asyncValidation()" name="email" value="" placeholder="ni@example.com"/>
-            </td>
-            <td>
-              <p class="error" id="emailError"> {{emailError}} </p>
-            </td>
-            <td>
-              <p class="correct" id="emailCorrect">{{emailCorrect}}</p>
-            </td>
-          </tr>
+          <form method="post" action="/register/?lang=eus" id="form">
+            <table class="myTables">
+              <tbody>
+                <tr>
+                  <td class="label">
+                    Bezero izena
+                  </td>
+                  <td>
+                    <input type="text" id="username" name="username" value="" placeholder="Zure izena ... da"/>
+                  </td>
+                  <td>
+                    <p class="error" > {{usernameError}} </p>
+                  </td>
+                </tr>
 
-        </tbody>
-      </table>
-      <p><input type="submit" value="Bidali"/></p>
-    </form>
+                <tr>
+                  <td class="label">
+                    Pasahitza
+                  </td>
+                  <td>
+                    <input type="password" id="password" name="password" id="password" value="" placeholder="6 karaktere alfanumeriko" autocomplete="off"/>
+                  </td>
+                  <td>
+                    <p class="error" > {{passwordError}} </p>
+                  </td>
+                </tr>
 
-    <p> <a href="/?lang=eus"> Atzera bueltatu</a></p>
-    <br>
-    <br>
-    <br>
-    <p> <a href="/register/users/?lang=eus"> Ikusi erabiltzaile guztiak </a> </p>
+                <tr>
+                  <td class="label">
+                    Errepikatu pasahitza
+                  </td>
+                  <td>
+                    <input type="password" id="password2" name="password2" value="" placeholder="Errepika ezazu berdin ..."/>
+                  </td>
+                  <td>
+                    <p class="error" > {{password2Error}} </p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="label">
+                    Helbide elektronikoa
+                  </td>
+                  <td>
+                    <input type="text" id="email" onfocusin="checkingEmailMessage()" onfocusout="asyncValidation()" name="email" value="" placeholder="ni@example.com"/>
+                  </td>
+                  <td>
+                    <p class="error" id="emailError"> {{emailError}} </p>
+                  </td>
+                  <td>
+                    <p class="correct" id="emailCorrect">{{emailCorrect}}</p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td >
+                    Argazkia
+                  </td>
+                  <td>
+                    <input type="file" id="photo" name="photo" accept="image/*">
+                  </td>
+                  <td>
+                    <p class="error"> {{photoError}} </p>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+            <br>
+            <center><input type="submit" value="Bidali"/></center>
+          </form>
+          <br><br>
+          <p> <a href="/register/users/?lang=eus"> Ikusi erabiltzaile guztiak </a> </p>
+
+          <br><br>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
+    </tr>
+  </table>
+</body>
+</html>

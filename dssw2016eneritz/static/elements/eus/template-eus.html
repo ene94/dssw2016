@@ -30,58 +30,25 @@
 
       <tr>
         <td colspan="6">
-          <h1>BEZERO GUZTIAK</h1>
+          <h1>Kaixo Mundua!</h1>
         </td>
       </tr>
 
       <tr>
         <td colspan="6">
-          <div class="body">
+          <div class="body" height="200">
             <!-- HERE STARTS THE CONTENT -->
 
-            <table class="myTables">
-              <tbody>
-                {% for user in users %}
-                <tr>
-                  <td colspan="1" rowspan="4">
-                    <img src="/img/girl_computer_anime.png" alt="user photo" width="150">{{user.photo}}<!--TODO: HACER LOS BLOBS-->
-                  </td>
 
-                  <td>
-                    Bezero izena: {{user.username}}
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Pasahitza: {{user.password}}
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Pasahitza 2: {{user.password2}}
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Helbide elektronikoa: {{user.email}}
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <br>
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+
             <br><br><br>
           </div>
         </td>
-        </tr>
+      </tr>
 
-        <tr>
+      <tr>
         <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
-        </tr>
-        </table>
-        </body>
-        </html>
+      </tr>
+    </table>
+  </body>
+</html>

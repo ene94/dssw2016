@@ -31,7 +31,7 @@ handlers:
   script: webservices.app
 
 # foro de mensajes --> con /chat
-- url: /chat
+- url: /chat/.*
   script: chat.app
 
 # main: index y todo lo demás .*

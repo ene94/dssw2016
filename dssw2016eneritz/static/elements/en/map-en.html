@@ -1,6 +1,6 @@
 <html lang="es">
 <head>
-  <title>Mapas</title>
+  <title>Maps</title>
   <link type="text/css" rel="stylesheet" href="/css/style.css"/>
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
@@ -15,25 +15,25 @@
     </tr>
 
     <tr>
-      <th><a class="headLinks" href="/main/?lang=es">Inicio</a></th>
-      <th><a class="headLinks" href="/register/?lang=es">Registro</a></th>
-      <th><a class="headLinks" href="/webservices/login/?lang=es">Iniciar Sesión</a></th>
-      <th>Mapa</th>
-      <th><a class="headLinks" href="/chat/?lang=es"> Chat </a></th>
+      <th><a class="headLinks" href="/main/?lang=en">Main</a></th>
+      <th><a class="headLinks" href="/register/?lang=en">Register</a></th>
+      <th><a class="headLinks" href="/webservices/login/?lang=en">Login</a></th>
+      <th>Map</th>
+      <th><a class="headLinks" href="/chat/?lang=en"> Chat </a></th>
       <form method="get">
         <th>
-          Idioma <select name="lang" onchange="this.form.submit();">
-            <option selected value="es">Español</option>
-            <option value="en">English</option>
-            <option value="eus">Euskara</option>
-          </select>
+          Language <select name="lang" onchange="this.form.submit();">
+                      <option value="es">Español</option>
+                      <option selected value="en">English</option>
+                      <option value="eus">Euskara</option>
+                    </select>
         </th>
       </form>
     </tr>
 
     <tr>
       <td colspan="6">
-        <h1>MAPA</h1>
+        <h1>MAP</h1>
       </td>
     </tr>
 
@@ -43,14 +43,14 @@
           <!-- HERE START'S THE CONTENT -->
 
           <form method="post" action="" align="center">
-            <p> Introduce la dirección </p>
+            <p> Enter the address</p>
             <input type="text" id="address" name="address" value="{{address}}" placeholder="Address"/>
-            <button type="submit">Enviar</button>
+            <button type="submit">Send</button>
             <p> {{location}} </p>
             <table class="myTables" align="center">
               <tr>
                 <td>
-                  latitud
+                  latitude
                 </td>
                 <td>
                   <p id="lat">{{lat}}</p>
@@ -58,7 +58,7 @@
               </tr>
               <tr>
                 <td>
-                  longitud
+                  longitude
                 </td>
                 <td>
                   <p id="lng">{{lng}}</p>

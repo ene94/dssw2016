@@ -1,11 +1,7 @@
 <html lang="es">
 <head>
-  <title>Mapas</title>
-  <link type="text/css" rel="stylesheet" href="/css/style.css"/>
-  <meta name="viewport" content="initial-scale=1.0">
-  <meta charset="utf-8">
-  <script src="/js/map.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsxA8vJkdC7u7wr07XsSYGWhnF3RLXdhk&callback=initMap" async defer></script>
+  <title> Chat </title>
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -18,7 +14,7 @@
       <th><a class="headLinks" href="/main/?lang=es">Inicio</a></th>
       <th><a class="headLinks" href="/register/?lang=es">Registro</a></th>
       <th><a class="headLinks" href="/webservices/login/?lang=es">Iniciar Sesión</a></th>
-      <th>Mapa</th>
+      <th><a class="headLinks" href="/webservices/map/?lang=es">Mapa</a></th>
       <th><a class="headLinks" href="/chat/?lang=es"> Chat </a></th>
       <form method="get">
         <th>
@@ -33,7 +29,7 @@
 
     <tr>
       <td colspan="6">
-        <h1>MAPA</h1>
+        <h1>CHAT</h1>
       </td>
     </tr>
 
@@ -41,45 +37,36 @@
       <td colspan="6">
         <div class="body">
           <!-- HERE START'S THE CONTENT -->
+          {% for shout in shouts %}
+            {% ifequal shout.who '' %}
+              Anonymous: {{shout.message}}
+            {% else %}
+              {{shout.who}}: {{shout.message}}
+            {% endifequal %}
+            <br>
+          {% endfor %}
 
-          <form method="post" action="" align="center">
-            <p> Introduce la dirección </p>
-            <input type="text" id="address" name="address" value="{{address}}" placeholder="Address"/>
-            <button type="submit">Enviar</button>
-            <p> {{location}} </p>
-            <table class="myTables" align="center">
-              <tr>
-                <td>
-                  latitud
-                </td>
-                <td>
-                  <p id="lat">{{lat}}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  longitud
-                </td>
-                <td>
-                  <p id="lng">{{lng}}</p>
-                </td>
-              </tr>
-            </table>
-
+          <form action="" method="post" accept-charset="utf-8">
+            <p>De:
+              <input type="text" name="who" value="" id="who">
+            </p>
+            <p>Mensaje:
+              <input type="text" name="message" value="" id="message">
+            </p>
+            <p>
+              <input type="submit" value="Publicar">
+            </p>
           </form>
+
 
           <br><br><br>
         </div>
       </td>
     </tr>
 
-
     <tr>
       <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
     </tr>
-
   </table>
-  <div id="map"></div>
-  <br>
 </body>
 </html>

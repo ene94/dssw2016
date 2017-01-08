@@ -8,8 +8,10 @@ import json
 
 class MapHandler(webapp2.RequestHandler):
     def get(self):
+        lang = self.request.get('lang')#check language from get params
+        if lang == '': lang = "es"
         self.response.out.write(
-            template.render('static/elements/es/map-es.html', {}))
+                    template.render('static/elements/' + lang + '/map-' + lang + '.html', {}))
 
     def post(self):
         #ask for data
@@ -25,15 +27,17 @@ class MapHandler(webapp2.RequestHandler):
         lng = js['results'][0]['geometry']['location']['lng']
         #coords = "latitud: " + str(lat) + " , longitud: " + str(lng)
         values = {'address': address , 'location': location , 'lat': lat, 'lng': lng}
+        lang = self.request.get('lang')#check language from get params
+        if lang == '': lang = "es"
         self.response.out.write(
-            template.render('static/elements/es/map-es.html', values))
+                    template.render('static/elements/' + lang + '/map-' + lang + '.html', values))
 
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
+        lang = self.request.get('lang')#check language from get params
+        if lang == '': lang = "es"
         self.response.out.write(
-            template.render('static/elements/es/login-es.html', {}))
-        #clientID:606652852649-a4m0dlihj050t108ltlequa0cglsth09.apps.googleusercontent.com
-        #clientSecret: nwlPpNAcaiK6hG32t6xTkpEQ
+                    template.render('static/elements/' + lang + '/login-' + lang + '.html', {}))
 
 app = webapp2.WSGIApplication([
     ('/webservices/map/', MapHandler),

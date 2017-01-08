@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+  <title>Login</title>
+  <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="606652852649-a4m0dlihj050t108ltlequa0cglsth09.apps.googleusercontent.com">
+  <script src="/js/signIn.js"></script>
+</head>
+
+  <body>
+
+    <table>
+      <tr>
+        <td colspan="6"><img src="/img/head.jpg" class="backgroundImages" alt="head"></td>
+      </tr>
+
+      <tr>
+        <th><a class="headLinks" href="/main/?lang=en">Main</a></th>
+        <th><a class="headLinks" href="/register/?lang=en">Register</a></th>
+        <th>Login</th>
+        <th><a class="headLinks" href="/webservices/map/?lang=en">Map</a></th>
+        <th><a class="headLinks" href="/chat/?lang=en"> Chat </a></th>
+        <form method="get">
+          <th>
+            Language <select name="lang" onchange="this.form.submit();">
+                        <option value="es">Español</option>
+                        <option selected value="en">English</option>
+                        <option value="eus">Euskara</option>
+                      </select>
+          </th>
+        </form>
+      </tr>
+
+      <tr>
+        <td colspan="6">
+          <h1>LOGIN</h1>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="6">
+          <div class="body" height="200">
+            <!-- HERE START'S THE CONTENT -->
+            <div
+              class="g-signin2"
+              data-onsuccess="onSignIn"
+              data-onfailure="onSignInFailure">
+            </div>
+          <br><br><br>
+
+          <table class="myTables">
+                <tr>
+                  <td colspan="1" rowspan="3">
+                    <img id="googleImage" alt="user image" width="150">
+                  </td>
+                  <td>
+                    <p>Nombre:
+                  </td>
+                  <td>
+                    <p id="googleName">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>ID:
+                  </td>
+                  <td>
+                    <p id="googleID"></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>Email: </p>
+                  </td>
+                  <td>
+                    <p id="googleEmail">
+                  </td>
+                </tr>
+              </table>
+
+          <br><br><br>
+          <a href="" onclick="signOut()">Sign out</a>
+
+          <br><br><br>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
+      </tr>
+    </table>
+  </body>
+</html>
