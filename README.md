@@ -64,3 +64,10 @@ Proyecto accesible a trav&eaccute;s de GAE: http://dssw2016eneritz.appspot.com/
 * Crear la versión multilingüe de todas las funcionalidades
 
 **3h aproximadamente realizar tareas extra**
+
+### RECORDAR GIT ###
+
+* git pull
+* git add .
+* git commit -m "message"
+* git push

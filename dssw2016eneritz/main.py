@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import myUtils
 import webapp2
 from google.appengine.ext.webapp \
     import template
