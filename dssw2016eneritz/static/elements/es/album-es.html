@@ -1,6 +1,6 @@
 <html lang="es">
 <head>
-  <title> Chat </title>
+  <title> Album </title>
   <link type="text/css" rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -29,7 +29,7 @@
 
     <tr>
       <td colspan="6">
-        <h1>CHAT</h1>
+        <h1>ALBUM</h1>
       </td>
     </tr>
 
@@ -37,36 +37,26 @@
       <td colspan="6">
         <div class="body">
           <!-- HERE START'S THE CONTENT -->
-          {% for shout in shouts %}
-            {% ifequal shout.who '' %}
-              Anonymous: {{shout.message}}
-            {% else %}
-              {{shout.who}}: {{shout.message}}
-            {% endifequal %}
-            <br>
-          {% endfor %}
+          <p>Usuario autenticado: {{logedUser}}
+            <p>Subir foto:
+              <form action="{{upload_url}}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file"><br>
+                <input type="radio" name="access" value="public" checked="checked" /> Public
+                <input type="radio" name="access" value="private" /> Private<p>
+                  <input type="submit" name="submit" value="Submit">
+                </form>
 
-          <form action="" method="post" accept-charset="utf-8">
-            <p>De:
-              <input type="text" name="who" value="" id="who">
-            </p>
-            <p>Mensaje:
-              <input type="text" name="message" value="" id="message">
-            </p>
-            <p>
-              <input type="submit" value="Publicar">
-            </p>
-          </form>
+                <br><br><br>
+                {{images}}
+                <a href="/album/download/?lang=es">Ver fotos</a>
 
+              </div>
+            </td>
+          </tr>
 
-          <br><br><br>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
-    </tr>
-  </table>
-</body>
-</html>
+          <tr>
+            <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
+          </tr>
+        </table>
+      </body>
+      </html>

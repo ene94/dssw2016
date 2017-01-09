@@ -2,6 +2,13 @@
 import webapp2
 from webapp2_extras import sessions
 
+#This is needed to configure the session secret key
+#Runs first in the whole application
+config = {}
+config['webapp2_extras.sessions'] = {
+    'secret_key': 'my-super-secret-key',
+}
+
 #Session Handling class, gets the store, dispatches the request
 class BaseSessionHandler(webapp2.RequestHandler):
     def dispatch(self):

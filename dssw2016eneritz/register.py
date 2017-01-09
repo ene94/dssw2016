@@ -3,32 +3,25 @@
 import webapp2
 import re
 from google.appengine.ext import ndb
-
 from google.appengine.ext.webapp \
     import template
+from webapp2_extras import sessions
+import session_module
 
 class Register(webapp2.RequestHandler):
     def get(self):
-        #check language from get params
-        LANGUAGE = self.request.get('lang')
-        #display selected language registration page
-        if LANGUAGE == "en":
-            self.response.out.write(
-                template.render('static/elements/en/register-en.html', {}))
-        elif LANGUAGE == "eus":
-            self.response.out.write(
-                template.render('static/elements/eus/register-eus.html', {}))
-        else:
-            self.response.out.write(
-                template.render('static/elements/es/register-es.html', {}))
+        lang = self.request.get('lang')#check language from get params
+        if lang == '': lang = "es"
+        self.response.out.write(
+                    template.render('static/elements/' + lang + '/register-' + lang + '.html', {}))
 
     def post(self):
         #get parameters
-        LANGUAGE = self.request.get('lang')
         username = self.request.get('username')
         password = self.request.get('password')
         password2 = self.request.get('password2')
         email = self.request.get('email')
+        #photo = self.request.get('photo')
         usernameError = ""
         passwordError = ""
         password2Error = ""
@@ -65,18 +58,10 @@ class Register(webapp2.RequestHandler):
         #show apropiate response --> ERROR in en/eus/es
         if error == True:
             values = fill_values(username, password, password2, email, usernameError, passwordError, password2Error, emailError)
-            if LANGUAGE == "en":
-                self.response.out.write(
-                    template.render('static/elements/en/register-en.html', values))
-                self.response.write('<h1>ERROR</h1>')
-            elif LANGUAGE == "eus":
-                self.response.out.write(
-                    template.render('static/elements/eus/register-eus.html', values))
-                self.response.write('<h1>ARAZOAK</h1>')
-            else:
-                self.response.out.write(
-                    template.render('static/elements/es/register-es.html', values))
-                self.response.write('<h1>ERROR</h1>')
+            lang = self.request.get('lang')#check language from get params
+            if lang == '': lang = "es"
+            self.response.out.write(
+                        template.render('static/elements/' + lang + '/register-' + lang + '.html', values))
         else:
             # save user in ddbb
             user = User(
@@ -85,22 +70,13 @@ class Register(webapp2.RequestHandler):
                 password2 = password2,
                 email = email)
             user.put()
-            if LANGUAGE == "en":
-                self.response.out.write(
-                    template.render('static/elements/en/register-en.html', {}))
-                self.response.write('<h1>The form has been received successfuly</h1>')
-                self.response.write('<p>Welcome: %s</p>' % username)
-            elif LANGUAGE == "eus":
-                self.response.out.write(
-                    template.render('static/elements/eus/register-eus.html', {}))
-                self.response.write('<h1>Formularioa ongi jaso da</h1>')
-                self.response.write('<p>Ongi etorri: %s</p>' % username)
-            else:
-                self.response.out.write(
-                    template.render('static/elements/es/register-es.html', {}))
-                self.response.write('<h1>El formulario ha sido recibido correctamente</h1>')
-                self.response.write('<p>Bienvenid@: %s</p>' % username)
+            lang = self.request.get('lang')#check language from get params
+            if lang == '': lang = "es"
+            values = {'welcome': username}
+            self.response.out.write(
+                        template.render('static/elements/' + lang + '/register-' + lang + '.html', values))
 
+#server side validation
 class AsyncValidation (webapp2.RequestHandler):
     def get(self):
         error = False
@@ -115,9 +91,88 @@ class AsyncValidation (webapp2.RequestHandler):
             emailError += "Ya existe un usuario con ese email"
         if error == False:
             emailError = ""
-        self.response.write(emailError)
+        self.response.write(emailError)#returns this to the javascript
 
+class ShowUsers(webapp2.RequestHandler):
+    def get(self):
+        users = ndb.gql(
+            'SELECT * FROM User '
+            'ORDER BY username ASC')
+        values = {
+            'users': users
+        }
+        lang = self.request.get('lang')#check language from get params
+        if lang == '': lang = "es"
+        self.response.out.write(
+                    template.render('static/elements/' + lang + '/users-' + lang + '.html', values))
 
+class GoogleLoginHandler(session_module.BaseSessionHandler):
+    def post(self):
+        email = ""
+        logedUser = ""
+        if not self.session.get('logedUser'):
+            self.session['googleUser'] = self.request.get('email')#SESSION PARAMETER
+
+class LoginHandler(session_module.BaseSessionHandler):
+    def get(self):
+        logedUser = self.session.get('logedUser')#SESSION PARAMETER
+        values = {'logedUser': logedUser}
+
+        lang = self.request.get('lang')#check language from get params
+        if lang == '': lang = "es"
+        self.response.out.write(
+                    template.render('static/elements/' + lang + '/login-' + lang + '.html', values))
+    def post(self):
+        password = ""
+        email = ""
+        logedUser = ""
+        messageError = ""
+        error = False
+        if self.session.get('logedUser'):
+            messageError = 'Ya existe una sesion activa'
+            logedUser = self.session.get('logedUser')
+        elif self.session.get('googleUser'):
+            messageError = 'Ya existe una sesion activa'
+        else:
+            #if app login
+            #get parameters
+            password = self.request.get('password')
+            email = self.request.get('email')
+
+            #validate form info
+            if not valid_password(password):
+                error = True
+            if not valid_email(email):
+                error = True
+            usuarios = ndb.gql("SELECT * FROM User WHERE email=:1 AND password=:2", email, password)
+            if usuarios.count()==0:
+            	error = True
+
+            #appropiate response
+            if error:
+                messageError = "El email o la contrasena son incorrectos"
+            else:
+                logedUser = email
+                self.session['logedUser'] = logedUser#SESSION PARAMETER
+                email = ""
+                password = ""
+
+        values = {'messageError': messageError, 'email': email, 'password': password, 'logedUser': logedUser}
+
+        lang = self.request.get('lang')#check language from get params
+        if lang == '': lang = "es"
+        self.response.out.write(
+                    template.render('static/elements/' + lang + '/login-' + lang + '.html', values))
+
+class LogoutHandler(session_module.BaseSessionHandler):
+    def get(self):
+        if(self.session.get('logedUser')):
+            del self.session['logedUser']
+        if(self.session.get('googleUser')):
+            del self.session['googleUser']
+        lang = self.request.get('lang')#check language from get params
+        if lang == '': lang = "es"
+        self.redirect('/register/login/?lang=' + lang)
 
 #form parameter's restriction
 USER_RE = re.compile('[a-zA-Z]{3,20}')
@@ -160,29 +215,11 @@ class User(ndb.Model):
     photo = ndb.BlobProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
 
-class ShowUsers(webapp2.RequestHandler):
-    def get(self):
-        users = ndb.gql(
-            'SELECT * FROM User '
-            'ORDER BY username ASC')
-        values = {
-            'users': users
-        }
-        #check language from get params
-        LANGUAGE = self.request.get('lang')
-        #display selected language registration page
-        if LANGUAGE == "en":
-            self.response.out.write(
-                template.render('static/elements/en/users-en.html', values))
-        elif LANGUAGE == "eus":
-            self.response.out.write(
-                template.render('static/elements/eus/users-eus.html', values))
-        else:
-            self.response.out.write(
-                template.render('static/elements/es/users-es.html', values))
-
 app = webapp2.WSGIApplication([
     ('/register/', Register),
     ('/register/users/', ShowUsers),
-    ('/register/asyncValidation/', AsyncValidation)
-], debug=True)
+    ('/register/asyncValidation/', AsyncValidation),
+    ('/register/login/', LoginHandler),
+    ('/register/googleLogin/', GoogleLoginHandler),
+    ('/register/logout/', LogoutHandler)
+], config=session_module.config, debug=True)

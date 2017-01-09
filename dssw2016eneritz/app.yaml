@@ -30,6 +30,10 @@ handlers:
 - url: /webservices/.*
   script: webservices.app
 
+# Album --> con /album
+- url: /album/.*
+  script: album.app
+
 # foro de mensajes --> con /chat
 - url: /chat/.*
   script: chat.app

@@ -18,7 +18,7 @@
     <tr>
       <th><a class="headLinks" href="/main/?lang=en">Main</a></th>
       <th>Register</th>
-      <th><a class="headLinks" href="/webservices/login/?lang=en">Login</a></th>
+      <th><a class="headLinks" href="/register/login/?lang=en">Login</a></th>
       <th><a class="headLinks" href="/webservices/map/?lang=en">Map</a></th>
       <th><a class="headLinks" href="/chat/?lang=en"> Chat </a></th>
       <form method="get">
@@ -115,6 +115,14 @@
             <br>
             <center><input type="submit" value="Send"/></center>
           </form>
+
+          <div>
+            <h2>
+              {% ifnotequal welcome None %}
+                Welcome: {{welcome}}
+              {% endifnotequal %}
+            </h2>
+          </div>
 
           <br><br>
           <p> <a href="/register/users/?lang=en"> Show all users</a> </p>

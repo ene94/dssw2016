@@ -42,16 +42,9 @@ class LogoutHandler(session_module.BaseSessionHandler):
             del self.session['counter']
         self.redirect('/')
 
-#This is needed to configure the session secret key
-#Runs first in the whole application
-config = {}
-config['webapp2_extras.sessions'] = {
-    'secret_key': 'my-super-secret-key',
-}
-
 app = webapp2.WSGIApplication(
 [
     ('/logoutSession/', LogoutHandler),
     ('/', InitHandler),
     ('/main/', MainHandler),
-], config = config, debug=True)
+], config = session_module.config, debug=True)

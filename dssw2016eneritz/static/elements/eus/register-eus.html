@@ -17,7 +17,7 @@
     <tr>
       <th><a class="headLinks" href="/main/?lang=eus">Hasiera</a></th>
       <th>Izena eman</th>
-      <th><a class="headLinks" href="/webservices/login/?lang=eus">Saioa hasi</a></th>
+      <th><a class="headLinks" href="/register/login/?lang=eus">Saioa hasi</a></th>
       <th><a class="headLinks" href="/webservices/map/?lang=eus">Mapa</a></th>
       <th><a class="headLinks" href="/chat/?lang=eus"> Chata </a></th>
       <form method="get">
@@ -114,6 +114,15 @@
             <br>
             <center><input type="submit" value="Bidali"/></center>
           </form>
+
+          <div>
+            <h2>
+              {% ifnotequal welcome None %}
+                Ongi etorri: {{welcome}}
+              {% endifnotequal %}
+            </h2>
+          </div>
+
           <br><br>
           <p> <a href="/register/users/?lang=eus"> Ikusi erabiltzaile guztiak </a> </p>
 

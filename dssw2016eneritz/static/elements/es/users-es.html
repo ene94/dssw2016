@@ -13,7 +13,7 @@
     <tr>
       <th><a class="headLinks" href="/main/?lang=es">Inicio</a></th>
       <th><a class="headLinks" href="/register/?lang=es">Registro</a></th>
-      <th><a class="headLinks" href="/webservices/login/?lang=es">Iniciar Sesión</a></th>
+      <th><a class="headLinks" href="/register/login/?lang=es">Iniciar Sesión</a></th>
       <th><a class="headLinks" href="/webservices/map/?lang=es">Mapa</a></th>
       <th><a class="headLinks" href="/chat/?lang=es"> Chat </a></th>
       <form method="get">
@@ -43,7 +43,11 @@
               {% for user in users %}
               <tr>
                 <td colspan="1" rowspan="4">
-                  <img src="/img/girl_computer_anime.png" alt="user photo" width="150">{{user.photo}}<!--TODO: HACER LOS BLOBS-->
+                  {% ifequal user.photo None %}
+                    <img src="/img/girl_computer_anime.png" alt="user photo" width="150">
+                  {% else %}
+                    {{user.photo}}<!--TODO: HACER LOS BLOBS-->
+                  {% endifequal %}
                 </td>
 
                 <td>

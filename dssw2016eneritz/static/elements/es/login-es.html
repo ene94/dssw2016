@@ -4,6 +4,7 @@
   <link type="text/css" rel="stylesheet" href="/css/style.css"/>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="google-signin-client_id" content="606652852649-a4m0dlihj050t108ltlequa0cglsth09.apps.googleusercontent.com">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="/js/signIn.js"></script>
 </head>
 
@@ -38,56 +39,110 @@
 
     <tr>
       <td colspan="6">
-        <div class="body" height="200">
+        <div class="body">
           <!-- HERE START'S THE CONTENT -->
-          <div
-          class="g-signin2"
-          data-onsuccess="onSignIn"
-          data-onfailure="onSignInFailure">
-        </div>
-        <br><br><br>
+          <table border="1">
+            <tr>
+              <td colspan="2" align="center"> Sólo puede haber una sesión abierta </td>
+            </tr>
+            <tr>
+              <td style="padding-right: 20px">
+                <br><center>Acceder con google:</center><br>
+                <table class="myTables">
+                  <tr>
+                    <td colspan="1" rowspan="3">
+                      <img id="googleImage" alt="user image" width="150">
+                    </td>
+                    <td>
+                      <p>Nombre:
+                      </td>
+                      <td>
+                        <p id="googleName">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p>ID:
+                          </td>
+                          <td>
+                            <p id="googleID"></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <p>Email: </p>
+                          </td>
+                          <td>
+                            <p id="googleEmail">
+                            </td>
+                          </tr>
+                        </table>
+                        <br>
+                          {% ifequal logedUser None %}
+                          <div
+                            align="center"
+                            class="g-signin2"
+                            data-onsuccess="onSignIn"
+                            data-onfailure="onSignInFailure">
+                          </div>
+                          {% endifequal %}
+                          <br>
+                    </td>
+                    <td style="padding-left: 20px">
+                      <center>Acceder con la web:</center><br>
+                      <form method="post" action="/register/login/?lang=es">
+                        <table class="myTables">
+                          <tbody>
+                            <tr>
+                              <td >
+                                Email
+                              </td>
+                              <td>
+                                <input type="email" id="email"  name="email" value="{{email}}"/>
+                              </td>
+                            </tr>
 
-        <table class="myTables">
-              <tr>
-                <td colspan="1" rowspan="3">
-                  <img id="googleImage" alt="user image" width="150">
-                </td>
-                <td>
-                  <p>Nombre:
-                </td>
-                <td>
-                  <p id="googleName">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>ID:
-                </td>
-                <td>
-                  <p id="googleID"></p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Email: </p>
-                </td>
-                <td>
-                  <p id="googleEmail">
-                </td>
-              </tr>
-            </table>
+                            <tr>
+                              <td >
+                                Contraseña
+                              </td>
+                              <td>
+                                <input type="password" name="password" id="password" value="{{password}}" autocomplete="off"/>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                {% ifnotequal logedUser None %}
+                                Usuario autenticado: <p id="logedUser"><b>{{logedUser}}</b></p>
+                                {% endifnotequal %}
+                              </td>
+                            </tr>
 
-        <br><br><br>
-        <a href="" onclick="signOut()">Sign out</a>
+                          </tbody>
+                        </table>
+                        <br>
+                        <center><input type="submit" id="loginButton" value="Acceder"/></center>
+                      </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <p class="error" id="messageError" align="center"> {{messageError}}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <center><a href="/register/logout/?lang=es" onclick="signOut()">Cerrar Sesión</a></center>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </td>
+            </tr>
 
-        <br><br><br>
-      </div>
-    </td>
-  </tr>
-
-  <tr>
-    <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
-  </tr>
-</table>
-</body>
-</html>
+            <tr>
+              <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
+            </tr>
+          </table>
+        </body>
+        </html>

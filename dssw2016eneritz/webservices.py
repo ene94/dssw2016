@@ -32,14 +32,6 @@ class MapHandler(webapp2.RequestHandler):
         self.response.out.write(
                     template.render('static/elements/' + lang + '/map-' + lang + '.html', values))
 
-class LoginHandler(webapp2.RequestHandler):
-    def get(self):
-        lang = self.request.get('lang')#check language from get params
-        if lang == '': lang = "es"
-        self.response.out.write(
-                    template.render('static/elements/' + lang + '/login-' + lang + '.html', {}))
-
 app = webapp2.WSGIApplication([
-    ('/webservices/map/', MapHandler),
-    ('/webservices/login/', LoginHandler)
+    ('/webservices/map/', MapHandler)
 ], debug=True)
