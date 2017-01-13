@@ -1,31 +1,7 @@
-<!-- TUTORIAL: http://html-tuts.com/html-photo-gallery-simple-javascript/ -->
 <html lang="es">
 <head>
   <title> Album </title>
   <link type="text/css" rel="stylesheet" href="/css/style.css">
-  <style type="text/css">
-	body {
-		background: #222;
-		margin: 0;
-	}
-	.thumbnails img {
-		height: 80px;
-		border: 4px solid #555;
-		padding: 1px;
-		margin: 0 10px 10px 0;
-	}
-
-	.thumbnails img:hover {
-		border: 4px solid #00ccff;
-		cursor:pointer;
-	}
-
-	.preview img {
-		border: 4px solid #444;
-		padding: 1px;
-		width: 800px;
-	}
-</style>
 </head>
 
 <body>
@@ -61,16 +37,32 @@
       <td colspan="6">
         <div class="body">
           <!-- HERE START'S THE CONTENT -->
-          <a href="/album/upload/">Subir imagen</a>
           <p>Usuario autenticado: {{logedUser}}
-          <div class="error">{{error}}</div>
-          <br>
-          <form method="get">
-          <input type="radio" name="permission" id="public" value="public" checked> Fotos públicas
-          <input type="radio" name="permission" id="private" value="private"> Mis fotos privadas
-          <button type="submit">Recargar</button>
-        </form>
-        <br><br>
+            {% ifequal logedUser "" %}
+              <div class="error">Tienes que iniciar sesion</div>
+            {% endifequal %}
 
-            <div class="gallery" align="center">
-              <div class="thumbnails">
+            <p>Subir foto:
+              <form action="{{upload_url}}" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file"><br>
+                <input type="radio" name="access" value="public" checked="checked" /> Public
+                <input type="radio" name="access" value="private" /> Private<p>
+                  {% ifequal logedUser "" %}
+                    <button type="submit" disabled>Enviar</button>
+                  {% else %}
+                    <button type="submit" >Enviar</button>
+                  {% endifequal %}
+                </form>
+
+                <br><br><br>
+                <a href="/album/">Ver fotos</a>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="6"><img src="/img/tail.jpg" class="backgroundImages" alt="tail"></td>
+          </tr>
+        </table>
+      </body>
+      </html>
